@@ -5815,7 +5815,7 @@ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 int
 main ()
 {
-FtsOptions options
+ChCppUtils::FtsOptions options
   ;
   return 0;
 }

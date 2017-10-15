@@ -36,7 +36,7 @@
  *
  * \date   Aug 18, 2017
  *
- * \brief  
+ * \brief
  *
  ******************************************************************************/
 
@@ -100,8 +100,6 @@ static bool indexer_is_opts_from_args_valid (INDEXER_ARGS_X *px_indexer_args);
 
 /****************************** LOCAL FUNCTIONS *******************************/
 using namespace std;
-
-static Logger &log = Logger::getInstance();
 
 static void event_log_cbk(int severity, const char *msg) {
 
@@ -192,10 +190,10 @@ static void indexer_get_opts_from_args (int argc, char **argv,
 int main (int argc, char **argv)
 {
       PAL_LOGGER_INIT_PARAMS_X x_init_params = {false};
-      pal_env_init ();                                                                 
-      
-      x_init_params.e_level = eLOG_LEVEL_HIGH;                                         
-      x_init_params.b_enable_console_logging = true;                                   
+      pal_env_init ();
+
+      x_init_params.e_level = eLOG_LEVEL_HIGH;
+      x_init_params.b_enable_console_logging = true;
       pal_logger_env_init(&x_init_params);
 
    INDEXER_ARGS_X *px_indexer_args = (INDEXER_ARGS_X *) malloc (sizeof (INDEXER_ARGS_X));

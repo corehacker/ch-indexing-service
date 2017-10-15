@@ -61,6 +61,8 @@
 #ifndef __SRC_INDEXER_INDEXER_HPP__
 #define __SRC_INDEXER_INDEXER_HPP__
 
+using ChCppUtils::TcpServer;
+using ChCppUtils::client_ctxt;
 
 typedef struct _INDEXER_ARGS_X
 {

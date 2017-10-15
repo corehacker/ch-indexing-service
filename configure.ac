@@ -97,7 +97,7 @@ AC_LANG_PUSH([C++])
 AC_MSG_CHECKING([for the ch-cpp-utils availability])
 AC_LINK_IFELSE([
                 AC_LANG_PROGRAM([#include <ch-cpp-utils/fts.hpp>],
-                                [FtsOptions options])
+                                [ChCppUtils::FtsOptions options])
                 ],
                 [LIBCH_CPP_UTILS_PRESENCE=1], [LIBCH_CPP_UTILS_PRESENCE=0])
 
