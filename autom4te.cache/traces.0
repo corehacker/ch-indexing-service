@@ -2863,12 +2863,18 @@ m4trace:configure.ac:13: -1- _PKG_SHORT_ERRORS_SUPPORTED
 m4trace:configure.ac:14: -1- m4_pattern_allow([^PROTOBUF_LIBS$])
 m4trace:configure.ac:15: -1- m4_pattern_allow([^PROTOBUF_CFLAGS$])
 m4trace:configure.ac:16: -1- m4_pattern_allow([^PROTOBUF_VERSION$])
-m4trace:configure.ac:137: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:137: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:137: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:137: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:137: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:137: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:137: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:137: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
-m4trace:configure.ac:137: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:44: -1- _m4_warn([obsolete], [The macro `AC_TRY_LINK' is obsolete.
+You should run autoupdate.], [../../lib/autoconf/general.m4:2698: AC_TRY_LINK is expanded from...
+../../lib/m4sugar/m4sh.m4:639: AS_IF is expanded from...
+../../lib/autoconf/general.m4:2042: AC_CACHE_VAL is expanded from...
+../../lib/autoconf/general.m4:2063: AC_CACHE_CHECK is expanded from...
+configure.ac:44: the top level])
+m4trace:configure.ac:264: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:264: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:264: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:264: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:264: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:264: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:264: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:264: -1- _AC_AM_CONFIG_HEADER_HOOK(["$ac_file"])
+m4trace:configure.ac:264: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS

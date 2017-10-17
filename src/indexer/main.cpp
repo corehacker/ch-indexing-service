@@ -72,6 +72,14 @@
 #include <thread>
 #include <chrono>
 
+#include <event2/http.h>
+#include <event2/http_struct.h>
+#include <glog/logging.h>
+
+#include <ch-cpp-utils/thread-pool.hpp>
+
+#include "es-client.hpp"
+
 #include "indexer.hpp"
 
 using namespace std;
@@ -199,6 +207,8 @@ int main (int argc, char **argv)
    INDEXER_ARGS_X *px_indexer_args = (INDEXER_ARGS_X *) malloc (sizeof (INDEXER_ARGS_X));
    memset (px_indexer_args, 0x00, sizeof (*px_indexer_args));
    indexer_get_opts_from_args (argc, argv, px_indexer_args);
+
+   px_indexer_args->listenPort = INDEXER_DEFAULT_LISTEN_PORT;
 
    event_set_log_callback(event_log_cbk);
 

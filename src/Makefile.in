@@ -100,13 +100,7 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
-am_ch_indexing_service_OBJECTS =  \
-	ch-ir-retrieval/ch-ir-common.$(OBJEXT) \
-	ch-ir-retrieval/ch-ir-indexer-pvt.$(OBJEXT) \
-	ch-ir-retrieval/ch-ir-indexer-weights.$(OBJEXT) \
-	ch-ir-retrieval/porter.$(OBJEXT) \
-	ch-ir-retrieval/ch-ir-indexer.$(OBJEXT) \
-	ch-ir-retrieval/ch-ir-indexer-stopwords.$(OBJEXT) \
+am_ch_indexing_service_OBJECTS = indexer/es-client.$(OBJEXT) \
 	indexer/indexer.$(OBJEXT) indexer/main.$(OBJEXT)
 ch_indexing_service_OBJECTS = $(am_ch_indexing_service_OBJECTS)
 ch_indexing_service_LDADD = $(LDADD)
@@ -126,18 +120,6 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-AM_V_CC = $(am__v_CC_@AM_V@)
-am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
-am__v_CC_0 = @echo "  CC      " $@;
-am__v_CC_1 = 
-CCLD = $(CC)
-LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_CCLD = $(am__v_CCLD_@AM_V@)
-am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
-am__v_CCLD_0 = @echo "  CCLD    " $@;
-am__v_CCLD_1 = 
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 AM_V_CXX = $(am__v_CXX_@AM_V@)
@@ -283,19 +265,14 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AM_CPPFLAGS = -I..
 ch_indexing_service_SOURCES = \
-						ch-ir-retrieval/ch-ir-common.c\
-						ch-ir-retrieval/ch-ir-indexer-pvt.c\
-						ch-ir-retrieval/ch-ir-indexer-weights.c\
-						ch-ir-retrieval/porter.c\
-						ch-ir-retrieval/ch-ir-indexer.c\
-						ch-ir-retrieval/ch-ir-indexer-stopwords.c\
+						indexer/es-client.cpp\
 						indexer/indexer.cpp\
 						indexer/main.cpp
 
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .c .cpp .o .obj
+.SUFFIXES: .cpp .o .obj
 $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -367,35 +344,14 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-ch-ir-retrieval/$(am__dirstamp):
-	@$(MKDIR_P) ch-ir-retrieval
-	@: > ch-ir-retrieval/$(am__dirstamp)
-ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) ch-ir-retrieval/$(DEPDIR)
-	@: > ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-ch-ir-retrieval/ch-ir-common.$(OBJEXT):  \
-	ch-ir-retrieval/$(am__dirstamp) \
-	ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-ch-ir-retrieval/ch-ir-indexer-pvt.$(OBJEXT):  \
-	ch-ir-retrieval/$(am__dirstamp) \
-	ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-ch-ir-retrieval/ch-ir-indexer-weights.$(OBJEXT):  \
-	ch-ir-retrieval/$(am__dirstamp) \
-	ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-ch-ir-retrieval/porter.$(OBJEXT): ch-ir-retrieval/$(am__dirstamp) \
-	ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-ch-ir-retrieval/ch-ir-indexer.$(OBJEXT):  \
-	ch-ir-retrieval/$(am__dirstamp) \
-	ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-ch-ir-retrieval/ch-ir-indexer-stopwords.$(OBJEXT):  \
-	ch-ir-retrieval/$(am__dirstamp) \
-	ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
 indexer/$(am__dirstamp):
 	@$(MKDIR_P) indexer
 	@: > indexer/$(am__dirstamp)
 indexer/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) indexer/$(DEPDIR)
 	@: > indexer/$(DEPDIR)/$(am__dirstamp)
+indexer/es-client.$(OBJEXT): indexer/$(am__dirstamp) \
+	indexer/$(DEPDIR)/$(am__dirstamp)
 indexer/indexer.$(OBJEXT): indexer/$(am__dirstamp) \
 	indexer/$(DEPDIR)/$(am__dirstamp)
 indexer/main.$(OBJEXT): indexer/$(am__dirstamp) \
@@ -407,36 +363,14 @@ ch-indexing-service$(EXEEXT): $(ch_indexing_service_OBJECTS) $(ch_indexing_servi
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f ch-ir-retrieval/*.$(OBJEXT)
 	-rm -f indexer/*.$(OBJEXT)
 
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@ch-ir-retrieval/$(DEPDIR)/ch-ir-common.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ch-ir-retrieval/$(DEPDIR)/ch-ir-indexer-pvt.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ch-ir-retrieval/$(DEPDIR)/ch-ir-indexer-stopwords.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ch-ir-retrieval/$(DEPDIR)/ch-ir-indexer-weights.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ch-ir-retrieval/$(DEPDIR)/ch-ir-indexer.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@ch-ir-retrieval/$(DEPDIR)/porter.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@indexer/$(DEPDIR)/es-client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@indexer/$(DEPDIR)/indexer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@indexer/$(DEPDIR)/main.Po@am__quote@
-
-.c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
-
-.c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -569,8 +503,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f ch-ir-retrieval/$(DEPDIR)/$(am__dirstamp)
-	-rm -f ch-ir-retrieval/$(am__dirstamp)
 	-rm -f indexer/$(DEPDIR)/$(am__dirstamp)
 	-rm -f indexer/$(am__dirstamp)
 
@@ -582,7 +514,7 @@ clean: clean-am
 clean-am: clean-binPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf ch-ir-retrieval/$(DEPDIR) indexer/$(DEPDIR)
+	-rm -rf indexer/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -628,7 +560,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf ch-ir-retrieval/$(DEPDIR) indexer/$(DEPDIR)
+	-rm -rf indexer/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

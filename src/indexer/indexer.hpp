@@ -47,12 +47,6 @@
 #include <ch-cpp-utils/thread-pool.hpp>
 #include <ch-cpp-utils/tcp-listener.hpp>
 #include <ch-cpp-utils/tcp-server.hpp>
-#include <ch-cpp-utils/logger.hpp>
-
-#include "../ch-ir-retrieval/ch-ir-common.h"
-#include "../ch-ir-retrieval/ch-ir-query-parser.h"
-#include "../ch-ir-retrieval/ch-ir-indexer.h"
-#include "../ch-ir-retrieval/ch-ir-indexer-pvt.h"
 
 #include <ch-protos/packet.pb.h>
 #include <ch-protos/communication.pb.h>
@@ -75,7 +69,7 @@ class Indexer {
 private:
       TcpServer *server;
       INDEXER_ARGS_X x_args;
-      CH_IR_INDEXER_CTXT_X *px_indexer_ctxt;
+      EsClient *esClient;
 
       static void _onNewConnection (client_ctxt *client, void *this_);
       static void _onNewMessage (client_ctxt *client, uint8_t *message, uint32_t length, void *this_);
